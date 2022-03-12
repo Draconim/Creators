@@ -21,6 +21,10 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            $table->string('department');
+            $table->string('neptun_code', 6);
+            $table->integer('address_id');
+            $table->integer('role_id');
         });
     }
 
