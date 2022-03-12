@@ -47,3 +47,12 @@ Támogatandó üzleti folyamatok:
         - Eseményen részvevők listájának exportálása (excel fájlba)
     - Főadmin
         - Adminok hozzáadása, felfüggesztése, törlése
+## 6. Implementációs terv
+
+    A webes felület HTML és CSS nyelven fog készülni. Ezeket a technológiákat külön fájlokba írva készítjük, és egymáshoz csatoljuk a jobb átláthatóság, könnyebb fejlesztés érdekében. Az alkalmazs szerver oldalát PHP technológiával készítjük. Segítségünkre lesz továbbá a Laravel keretrendszer.
+
+## 7. Karbantartási terv
+
+A szoftveren a későbbiekben az igények alapján lehet karbantartani, amely a következőkből áll:
+    - Új funkciók hozzáadása
+    - A kiszolgáló szerver státuszának ellenőrzése, offline szerver esetén újraindítás.
