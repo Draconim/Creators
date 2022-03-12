@@ -15,10 +15,21 @@ return new class extends Migration
     {
         Schema::create('event__user__statuses', function (Blueprint $table) {
             $table->id();
-            $table->integer('event_id');
-            $table->integer('user_id');
-            $table->integer('status_id');
+            $table->unsignedInteger('event_id');
+            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('status_id');
+            $table->foreign('event_id')->references('id')->on('events');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('status_id')->references('id')->on('statuses');
+            
         });
+
+        // Schema::create('proba', function (Blueprint $table) {
+        //     $table->increments('id');
+        //     $table->string('name');
+        //     $table->unsignedInteger('role_id');
+        //     $table->foreign('role_id')->references('id')->on('users');
+        // });
     }
 
     /**

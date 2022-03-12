@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('addresses', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->integer('zip');
             $table->string('settlement');
         });

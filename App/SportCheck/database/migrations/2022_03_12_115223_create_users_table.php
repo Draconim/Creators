@@ -1,8 +1,10 @@
 <?php
 
+use App\Models\Role as ModelsRole;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Migrations\Role;
 
 return new class extends Migration
 {
@@ -14,7 +16,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
@@ -23,9 +25,15 @@ return new class extends Migration
             $table->timestamps();
             $table->string('department');
             $table->string('neptun_code', 6);
-            $table->integer('address_id');
-            $table->integer('role_id');
+            $table->unsignedInteger('address_id');
+            $table->unsignedInteger('role_id');
+            $table->foreign('role_id')->references('id')->on('roles');
+            $table->foreign('address_id')->references('id')->on('addresses');
         });
+
+
+
+
     }
 
     /**
