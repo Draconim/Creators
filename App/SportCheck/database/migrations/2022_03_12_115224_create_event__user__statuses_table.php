@@ -15,7 +15,9 @@ return new class extends Migration
     {
         Schema::create('event__user__statuses', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->integer('event_id');
+            $table->integer('user_id');
+            $table->integer('status_id');
         });
     }
 
