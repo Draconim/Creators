@@ -29,3 +29,21 @@ Támogatandó üzleti folyamatok:
 - Nem funkcionális követelmények:
     - Letisztult, egyszerű kinézet (könnyű átláthatóság)
 
+## 5. Funkcionális terv
+
+- Rendszerszereplők:
+    - Főadmin
+    - Admin
+    - Felhasználó
+- Rendszer használati esetek és lefutásaik:
+    - Felhasználó
+        - Regisztráció
+        - Bejelentkezés
+        - Események megtekintése
+        - Jelentkezés a rendezvényre
+        - Rendezvény QR-kódjának beolvasása
+    - Admin
+        - Események kiírása
+        - Eseményen részvevők listájának exportálása (excel fájlba)
+    - Főadmin
+        - Adminok hozzáadása, felfüggesztése, törlése
