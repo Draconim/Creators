@@ -22,7 +22,7 @@ class EventFactory extends Factory
             'description' => $this->faker->paragraph,
             'date' => $this->faker->dateTime(),
             'duration' => $this->faker->time(),
-            'code' => Str::random(6),
+            'code' => $this->faker->unique()->text(6),
             'check-in_time' => $this->faker->dateTime(),
         ];
     }

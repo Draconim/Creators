@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('description');
             $table->datetime('date');
             $table->time('duration');
-            $table->string('code');
+            $table->string('code')->unique();
             $table->datetime('check-in_time');
         });
     }
