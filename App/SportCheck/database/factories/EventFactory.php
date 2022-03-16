@@ -23,7 +23,7 @@ class EventFactory extends Factory
             'date' => $this->faker->dateTime(),
             'duration' => $this->faker->time(),
             'code' => $this->faker->unique()->text(6),
-            'check-in_time' => $this->faker->dateTime(),
+            'check_in_time' => $this->faker->dateTime(),
         ];
     }
 }
