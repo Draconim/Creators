@@ -71,18 +71,10 @@ class EventController extends Controller
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, $id)
+    public function edit($id)
     {
         $event = Event::find($id);
-        $event->name = $request->input('name');
-        $event->description = $request->input('description');
-        $event->date = $request->input('date');
-        $event->duration = $request->input('duration');
-        $event->check_in_time = $request->input('check_in_time');
-        $event->save();
-
-        dd($event);
-        return redirect('events')->with('flash_message', 'Contact Updated!');
+        return view('events.edit')->with('events', $event);
     }
 
     /**
@@ -124,3 +116,4 @@ class EventController extends Controller
         return redirect()->route('eventlist');
     }
 }
+
