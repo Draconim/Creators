@@ -9,4 +9,8 @@ class Event extends Model
 {
     public $timestamps = false;
     use HasFactory;
+
+    protected $fillable = [
+        'name','description','date','duration','check_in_time', 'code'
+    ];
 }
