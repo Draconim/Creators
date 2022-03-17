@@ -20,4 +20,6 @@ Route::get('/', function () {
 Route::resource('events','App\Http\Controllers\EventController');
 
 Route::get('/events', [EventController::class, 'index'])->name('eventlist');
-Route::get('/events-{id}', [EventController::class, 'show'])->name('modify_event');
+Route::get('/events/{id}', [EventController::class, 'show'])->name('details_event');
+Route::get('/events/create', [EventController::class, 'store'])->name('create_event');
+Route::get('/events/{id}/update', [EventController::class, 'update'])->name('update_event');

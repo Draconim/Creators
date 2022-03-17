@@ -96,8 +96,7 @@ class EventController extends Controller
         $event->check_in_time = $request->input('check_in_time');
         $event->save();
 
-        dd($event);
-        return redirect('events')->with('flash_message', 'Contact Updated!');
+        return redirect()->route('eventlist')->with('flash_message', 'Contact Updated!');
 
     }
 
