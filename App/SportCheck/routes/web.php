@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EventController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::resource('events','App\Http\Controllers\EventController');
 
 Auth::routes();
 
@@ -30,3 +32,7 @@ Route::get('/dolgozo',function(){
 Route::get('/vendeg',function(){
     return view('register');
 });
+Route::get('/events', [EventController::class, 'index'])->name('eventlist');
+Route::get('/events/{id}', [EventController::class, 'show'])->name('details_event');
+Route::get('/events/create', [EventController::class, 'store'])->name('create_event');
+Route::get('/events/{id}/update', [EventController::class, 'update'])->name('update_event');
