@@ -64,7 +64,15 @@ class EventController extends Controller
         $event = Event::find($id);
         return view('events.show')->with('events', $event);
     }
-
+    public function events()
+    {
+        return view('events.events');
+    }
+    public function details($id)
+    {
+        $event = Event::find($id);
+        return view('events.details')->with('events', $event);
+    }
     /**
      * Show the form for editing the specified resource.
      *
