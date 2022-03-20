@@ -17,7 +17,7 @@ use App\Http\Controllers\EventController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::resource('events','App\Http\Controllers\EventController');
+//Route::resource('events','App\Http\Controllers\EventController');
 
 Auth::routes();
 
@@ -32,10 +32,12 @@ Route::get('/dolgozo',function(){
 Route::get('/vendeg',function(){
     return view('register');
 });
-Route::get('/events', [EventController::class, 'index'])->name('eventlist');
-Route::get('/events/{id}', [EventController::class, 'show'])->name('details_event');
+
+Route::get('/events', [EventController::class, 'events'])->name('events');
+Route::get('/events/{id}', [EventController::class, 'details'])->name('details');
+
+//Route::get('/events', [EventController::class, 'index'])->name('eventlist');
+//Route::get('/events/{id}', [EventController::class, 'show'])->name('details_event');
 Route::get('/events/create', [EventController::class, 'store'])->name('create_event');
 Route::get('/events/{id}/update', [EventController::class, 'update'])->name('update_event');
 
-//Route::get('/events', [EventController::class, 'events'])->name('events');
-Route::get('/details', [EventController::class, 'details'])->name('details');

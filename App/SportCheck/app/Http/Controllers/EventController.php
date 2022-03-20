@@ -59,14 +59,17 @@ class EventController extends Controller
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        $event = Event::find($id);
-        return view('events.show')->with('events', $event);
-    }
+    //public function show($id)
+    //{
+    //    $event = Event::find($id);
+    //    return view('events.show')->with('events', $event);
+    //}
     public function events()
     {
-        return view('events.events');
+        $events = Event::orderBy('date', 'desc')->paginate(6);
+        return view('events.events',[
+            'events' => $events
+        ]);
     }
     public function details($id)
     {
