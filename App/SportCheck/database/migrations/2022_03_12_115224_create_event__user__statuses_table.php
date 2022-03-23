@@ -17,10 +17,10 @@ return new class extends Migration
             $table->id();
             $table->unsignedInteger('event_id');
             $table->unsignedInteger('user_id');
-            $table->unsignedInteger('status_id');
-            $table->foreign('event_id')->references('id')->on('events');
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('status_id')->references('id')->on('statuses');
+            //$table->unsignedInteger('status_id');
+            //$table->foreign('event_id')->references('id')->on('events');
+            //$table->foreign('user_id')->references('id')->on('users');
+            //$table->foreign('status_id')->references('id')->on('statuses');
             
         });
 

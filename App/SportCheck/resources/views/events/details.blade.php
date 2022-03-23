@@ -36,7 +36,7 @@
                     <label for="checkin"><h4>Megjelenés</h4></label>
                     <div name="checkin">{{ $events->check_in_time }}</div>
                 </div>
-                <a href="{{ url('/events/' ) }}" title="apply">
+                <a href="{{ url('/events/'.$events.'/checkin' ) }}" title="apply">
                     <button class="btn btn-primary btn-m">
                         Jelentkezés az eseményre
                     </button>

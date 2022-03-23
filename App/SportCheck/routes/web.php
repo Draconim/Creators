@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\Event_User_StatusController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\LoginController;
 
@@ -41,3 +42,4 @@ Route::get('/events/{id}', [EventController::class, 'details'])->name('details')
 Route::get('/events/create', [EventController::class, 'store'])->name('create_event');
 Route::get('/events/{id}/update', [EventController::class, 'update'])->name('update_event');
 
+Route::get('/events/{id}/checkin', [Event_User_StatusController::class, 'store'])->name('checkin');

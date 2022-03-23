@@ -9,4 +9,10 @@ class Event_User_Status extends Model
 {
     public $timestamps = false;
     use HasFactory;
+
+    protected $fillable = [
+        'event_id',
+        'user_id',
+        //'status_id',
+    ];
 }
