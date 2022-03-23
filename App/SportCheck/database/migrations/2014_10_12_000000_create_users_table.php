@@ -21,8 +21,8 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-            //$table->string('department');
-            //$table->string('neptun_code', 6);
+            $table->string('department')->default('NONE');
+            $table->string('neptun_code', 6)->default('NONE');
             //$table->unsignedInteger('address_id');
             //$table->unsignedInteger('role_id');
 

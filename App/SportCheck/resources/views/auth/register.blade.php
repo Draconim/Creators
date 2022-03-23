@@ -23,11 +23,12 @@
                         <div class="tab-pane active" id="hallgato" role="tabpanel">
                             <form method="POST" action="{{ route('register') }}">
                                 @csrf
-
+                                <input type="hidden" id="role" name="role" value="hallgato">
                                 <div class="row mb-3">
                                     <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Név') }}</label>
 
                                     <div class="col-md-6">
+                                        
                                         <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                                         @error('name')
@@ -39,12 +40,12 @@
                                 </div>
 
                                 <div class="row mb-3">
-                                    <label for="neptun" class="col-md-4 col-form-label text-md-end">{{ __('Neptun kód') }}</label>
+                                    <label for="neptun_code" class="col-md-4 col-form-label text-md-end">{{ __('Neptun kód') }}</label>
 
                                     <div class="col-md-6">
-                                        <input id="neptun" type="text" class="form-control @error('neptun') is-invalid @enderror" name="neptun" value="{{ old('neptun') }}" required autocomplete="neptun">
+                                        <input id="neptun_code" type="text" class="form-control @error('neptun_code') is-invalid @enderror" name="neptun_code" value="{{ old('neptun_code') }}" required autocomplete="neptun_code">
 
-                                        @error('neptun')
+                                        @error('neptun_code')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
@@ -103,6 +104,7 @@
                                     <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Név') }}</label>
 
                                     <div class="col-md-6">
+                                        <input type="hidden" id="role" name="role" value="dolgozo">
                                         <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                                         @error('name')
@@ -127,12 +129,12 @@
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label for="organization" class="col-md-4 col-form-label text-md-end">{{ __('Szervezeti egység') }}</label>
+                                    <label for="department" class="col-md-4 col-form-label text-md-end">{{ __('Szervezeti egység') }}</label>
 
                                     <div class="col-md-6">
-                                        <input id="organization" type="text" class="form-control @error('organization') is-invalid @enderror" name="organization" value="{{ old('organization') }}" required autocomplete="organization" autofocus>
+                                        <input id="department" type="text" class="form-control @error('department') is-invalid @enderror" name="department" value="{{ old('department') }}" required autocomplete="department" autofocus>
 
-                                        @error('organization')
+                                        @error('department')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
@@ -178,6 +180,7 @@
                                     <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
 
                                     <div class="col-md-6">
+                                        <input type="hidden" id="role" name="role" value="vendeg">
                                         <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                                         @error('name')
