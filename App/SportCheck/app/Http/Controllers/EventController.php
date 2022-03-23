@@ -95,7 +95,7 @@ class EventController extends Controller
             ]);
         }
         else{
-            Event_User_Status::where('event_id', '=',$id)->delete();
+            $checkIn = Event_User_Status::where('event_id', '=',$id)->where('user_id', '=', $userId)->delete();
             return view('events.details',[
                 'event' => $event,
                 'type'=> 0
