@@ -23,6 +23,11 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
+            'department' => Str::random(15),
+            'remember_token' => Str::random(6),
+            'address_id' => \App\Models\Address::inRandomOrder()->first()->id,
+            'role_id' => \App\Models\Role::inRandomOrder()->first()->id,
+            'neptun_code' => Str::random(6),
         ];
     }
 
