@@ -42,7 +42,10 @@ class Event_User_StatusController extends Controller
             //'status_id' => $request->status_id,
         ];
         Event_User_Status::create($create);
-        return redirect()->route('events')->with('flash_message', 'Sikeres jelentkezés!');
+        //return view('events/'.$event->id)->with('events', $event);
+        return redirect()
+            ->route('details', $id)
+            ->with('success', __('Sikeres jelentkezés'));
     }
 
     /**

@@ -36,11 +36,12 @@
                     <label for="checkin"><h4>Megjelenés</h4></label>
                     <div name="checkin">{{ $events->check_in_time }}</div>
                 </div>
-                <a href="{{ url('/events/'.$events->id.'/checkin' ) }}" title="apply">
-                    <button class="btn btn-primary btn-m">
-                        Jelentkezés az eseményre
-                    </button>
-                </a>
+                <form method="POST" action="{{ route('details',$events) }}">
+                    @csrf
+                        <button class="btn btn-primary btn-m" type="submit">
+                            Jelentkezés az eseményre
+                        </button>
+                </form>
             </div>
         </div>
     </div>
