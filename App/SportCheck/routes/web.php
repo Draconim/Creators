@@ -20,4 +20,5 @@ Route::get('/', function () {
 });
 
 Route::get('/users', [UserController::class, 'index'])->name('userlist');
+Route::get('/users/search', [UserController::class, 'search'])->name('usersearch');
 Route::get('/users/{id}/toadmin', [USerController::class, 'update'])->name('user_toadmin');

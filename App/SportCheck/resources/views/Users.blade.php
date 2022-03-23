@@ -6,6 +6,12 @@
             <div class="col-md-9">
                 <div class="card">
                     <div class="card-header">Contacts</div>
+                    <a href="{{ url('/users') }}" title="X"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> X</button></a>                                            
+                    <form method="GET" action="{{url('/users/search')}}">
+
+                        <input type="search" name="userSearch" placeholder="Keresés">
+                        <button type="submit">Keresés</button>
+                    </form>
                     @if(isset($message))
                     <div class="card-header">{{ $message }}</div>
                     @endif

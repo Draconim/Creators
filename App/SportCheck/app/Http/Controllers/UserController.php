@@ -96,4 +96,13 @@ class UserController extends Controller
     {
         //
     }
+
+    public function search(){
+        $search_text = $_GET['userSearch'];
+        $items = User::where('name','LIKE','%'.$search_text.'%')->get();
+
+        return view('Users',[
+            'users' => $items
+        ]);
+    }
 }
