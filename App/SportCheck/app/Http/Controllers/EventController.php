@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\Event_User_Status;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
@@ -83,7 +85,25 @@ class EventController extends Controller
     public function details($id)
     {
         $event = Event::find($id);
-        return view('events.details')->with('events', $event);
+        $userId=auth()->user()->id;
+        $checkIn = Event_User_Status::where('event_id', '=',$id)->where('user_id', '=', $userId)->get();
+        //dd($checkIn);
+        if(count($checkIn) ==1 ){
+            return view('events.details',[
+                'event' => $event,
+                'type'=> 1
+            ]);
+        }
+        else{
+            return view('events.details',[
+                'event' => $event,
+                'type'=> 0
+            ]);
+        }
+
+        //    dd($checkIn);
+        
+        //return view('events.details')->with('data', $data);
     }
     /**
      * Show the form for editing the specified resource.

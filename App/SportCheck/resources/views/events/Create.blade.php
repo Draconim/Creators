@@ -1,12 +1,12 @@
-@extends('events.layout')
+@extends('home')
 @section('content')
  
 <div class="card">
   <div class="card-header">Contactus Page</div>
   <div class="card-body">
-      
+
       <form action="{{ url('events') }}" method="post">
-        {!! csrf_field() !!}
+        @csrf
         <label>Name</label></br>
         <input type="text" name="name" id="name" class="form-control"></br>
         <label>Description</label></br>
@@ -29,4 +29,4 @@
   </div>
 </div>
  
-@stop
+@endsection

@@ -47,7 +47,11 @@ class Event_User_StatusController extends Controller
             ->route('details', $id)
             ->with('success', __('Sikeres jelentkezés'));
     }
-
+    public function checkedIn($eventId){
+        $userId=auth()->user()->id;
+        $event =Event_User_Status::where('event_id', '=',$eventId)->where('user_id', '=', $userId)->get();
+        dd($eventId);
+    }
     /**
      * Display the specified resource.
      *

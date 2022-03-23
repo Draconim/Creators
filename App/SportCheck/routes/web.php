@@ -37,10 +37,10 @@ Route::get('/', [LoginController::class,'login'])->name('login');
 Route::get('/events', [EventController::class, 'events'])->name('events');
 Route::get('/events/{id}', [EventController::class, 'details'])->name('details');
 Route::post('/events/{id}', [Event_User_StatusController::class, 'store']);
-
+Route::get('/create', [EventController::class, 'create'])->name('create_event');
+Route::post('/create', [EventController::class, 'store']);
 //Route::get('/events', [EventController::class, 'index'])->name('eventlist');
 //Route::get('/events/{id}', [EventController::class, 'show'])->name('details_event');
-Route::get('/events/create', [EventController::class, 'store'])->name('create_event');
 Route::get('/events/{id}/update', [EventController::class, 'update'])->name('update_event');
 
 
