@@ -34,15 +34,15 @@ class Event_User_StatusController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $event)
+    public function store(Request $request, $id)
     {
         $create=[
             'user_id' => Auth::id(),
-            'event_id' => $event->$id,
+            'event_id' => $id,
             //'status_id' => $request->status_id,
         ];
         Event_User_Status::create($create);
-        return view('events/'.$event->$id)->with('events', $event);
+        return redirect()->route('events')->with('flash_message', 'Sikeres jelentkezés!');
     }
 
     /**
