@@ -21,10 +21,10 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-            // $table->string('department');
-            // $table->string('neptun_code', 6);
-            // $table->unsignedInteger('address_id');
-            // $table->unsignedInteger('role_id');
+            //$table->string('department');
+            //$table->string('neptun_code', 6);
+            //$table->unsignedInteger('address_id');
+            //$table->unsignedInteger('role_id');
 
             //A külső kulcsok msot nem kellenek, mert it csak ez az egy tábla lesz.
 
