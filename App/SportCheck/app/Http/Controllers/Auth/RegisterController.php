@@ -90,6 +90,7 @@ class RegisterController extends Controller
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
                 'neptun_code' => $data['neptun_code'],
+                'role_id' => 1,
             ]);
         }
         if($data['role'] == 'dolgozo'){
@@ -98,6 +99,8 @@ class RegisterController extends Controller
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
                 'department' => $data['department'],
+                'role_id' => 1,
+
             ]);
         }
         if($data['role'] == 'vendeg'){
@@ -108,6 +111,8 @@ class RegisterController extends Controller
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
                 'address_id' => $address->id,
+                'role_id' => 1,
+
             ]);
         }
     }

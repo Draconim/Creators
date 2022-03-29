@@ -26,11 +26,11 @@ return new class extends Migration
             $table->string('department')->default('NONE');
             $table->string('neptun_code', 6)->default('NONE');
             $table->unsignedInteger('address_id')->default(100);
-            $table->unsignedInteger('role_id')->default(100);
+            $table->unsignedInteger('role_id')->default(1);
 
             //A külső kulcsok msot nem kellenek, mert it csak ez az egy tábla lesz.
 
-            //$table->foreign('role_id')->references('id')->on('roles');
+            $table->foreign('role_id')->references('id')->on('roles');
             $table->foreign('address_id')->references('id')->on('addresses');
         });
 
