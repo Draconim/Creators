@@ -39,7 +39,7 @@ class Event_User_StatusController extends Controller
         $create=[
             'user_id' => Auth::id(),
             'event_id' => $id,
-            //'status_id' => $request->status_id,
+            'status_id' => 1,
         ];
         Event_User_Status::create($create);
         //return view('events/'.$event->id)->with('events', $event);
@@ -49,7 +49,7 @@ class Event_User_StatusController extends Controller
     }
     public function checkedIn($eventId){
         $userId=auth()->user()->id;
-        $event =Event_User_Status::where('event_id', '=',$eventId)->where('user_id', '=', $userId)->get();
+        $event =Event_User_Status::where('event_id', '=',$eventId)->where('user_id', '=', $userId)->where('status_id', '=', 1)->get();
         dd($eventId);
     }
     /**

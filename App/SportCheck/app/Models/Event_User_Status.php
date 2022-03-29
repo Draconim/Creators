@@ -13,6 +13,6 @@ class Event_User_Status extends Model
     protected $fillable = [
         'event_id',
         'user_id',
-        //'status_id',
+        'status_id',
     ];
 }
