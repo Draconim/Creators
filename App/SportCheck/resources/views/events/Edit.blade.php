@@ -1,34 +1,39 @@
-@extends('events.layout')
+@extends('layouts.app')
 @section('content')
  
-<div class="card">
-  <div class="card-header">Contactus Page</div>
-  <div class="card-body">
-      
-      <form action="{{ url('events/' .$events->id) }}" method="post">
-        {!! csrf_field() !!}
-        @method("PATCH")
-        <input type="hidden" name="id" id="id" value="{{$events->id}}" id="id" />
-        <label>Name</label></br>
-        <input type="text" name="name" id="name" value="{{$events->name}}" class="form-control"></br>
-        <label>Description</label></br>
-        <input type="text" name="description" id="description" value="{{$events->description}}" class="form-control"></br>
+<div class="container">
+  <div class="card">
+    <div class="card-header text-center">Rendezvény módosítása</div>
+    <div class="card-body">
 
-        <label>Date</label></br>
-        <input type="text" name="date" id="date" value="{{$events->date}}" class="form-control"></br>
-
-        <label>Duration</label></br>
-        <input type="text" name="duration" id="duration" value="{{$events->duration}}" class="form-control"></br>
-
-        <label>Check-in time</label></br>
-        <input type="text" name="check_in_time" id="check_in_time" value="{{$events->check_in_time}}" class="form-control"></br>
-        
-
-
-        <input type="submit" value="Update" class="btn btn-success"></br>
-    </form>
-   
+        <form action="{{ url('events/'.$event->id.'/update') }}" method="post">
+          @csrf
+          <div class="container d-flex flex-column justify-content-center align-items-center">
+            <div class="col-8">
+              <label for="name">Rendezvény neve</label>
+              <input type="text" name="name" id="name" class="form-control mb-4" value="{{$event->name}}">
+            </div>
+            <div class="col-8">
+              <label for="desc">Leírás</label>
+              <textarea type="text" rows="5" name="desc" id="description" class="form-control mb-4 h-100" rows="5">{{$event->description}}</textarea>
+            </div>
+            <div class="col-8">
+              <label for="date">Időpont</label>
+              <input type="text" name="date" id="date" class="form-control mb-4"  value="{{$event->date}}">
+            </div>
+            <div class="col-8">
+              <label for="dur">Időtartam</label>
+              <input type="text" name="dur" id="duration" class="form-control mb-4" value="{{$event->duration}}">
+            </div>
+            <div class="col-8">
+              <label for="checkin">Bejelentkezés ideje</label>
+              <input type="text" name="checkin" id="check_in_time" class="form-control mb-2" value="{{$event->check_in_time}}">
+            </div>
+            <input type="submit" value="Módosítások mentése" class="btn btn-success btn-lg m-4 col-4">
+          </div>
+          <input type="hidden" name="code" id="code">
+      </form>
+    </div>
   </div>
 </div>
- 
-@stop
+@endsection
