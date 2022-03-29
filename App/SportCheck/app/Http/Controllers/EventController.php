@@ -41,6 +41,7 @@ class EventController extends Controller
         return view('events.create');
     }
 
+    
     /**
      * Store a newly created resource in storage.
      *
@@ -106,6 +107,10 @@ class EventController extends Controller
         
         //return view('events.details')->with('data', $data);
     }
+    public function getDetails($id){
+        $event = Event::find($id);
+        return view('events.Edit')->with('event',$event);
+    }
     /**
      * Show the form for editing the specified resource.
      *
@@ -115,7 +120,7 @@ class EventController extends Controller
     public function edit($id)
     {
         $event = Event::find($id);
-        return view('events.edit')->with('events', $event);
+        return view('events.edit')->with('event', $event);
     }
 
     /**
@@ -131,13 +136,13 @@ class EventController extends Controller
 
         $event = Event::find($id);
         $event->name = $request->input('name');
-        $event->description = $request->input('description');
+        $event->description = $request->input('desc');
         $event->date = $request->input('date');
-        $event->duration = $request->input('duration');
-        $event->check_in_time = $request->input('check_in_time');
+        $event->duration = $request->input('dur');
+        $event->check_in_time = $request->input('checkin');
         $event->save();
 
-        return redirect()->route('eventlist')->with('flash_message', 'Contact Updated!');
+        return redirect()->route('events')->with('flash_message', 'Contact Updated!');
 
     }
 
