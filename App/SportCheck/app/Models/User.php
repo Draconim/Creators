@@ -24,6 +24,7 @@ class User extends Authenticatable
         'password',
         'neptun_code',
         'department',
+        'address_id',
     ];
 
     /**
