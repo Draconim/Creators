@@ -17,12 +17,14 @@ use App\Http\Controllers\Auth\LoginController;
 |
 */
 
-//Route::get('/', function () { return view('welcome');});
+Route::get('/', function () {
+    return view('welcome');
+});
 //Route::resource('events','App\Http\Controllers\EventController');
 
 Auth::routes();
 
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/hallgato',function(){
     return view('register');
@@ -33,7 +35,7 @@ Route::get('/dolgozo',function(){
 Route::get('/vendeg',function(){
     return view('register');
 });
-Route::get('/', [LoginController::class,'login'])->name('login');
+
 Route::get('/events', [EventController::class, 'events'])->name('events');
 Route::get('/events/{id}', [EventController::class, 'details'])->name('details');
 Route::post('/events/{id}', [Event_User_StatusController::class, 'store']);
