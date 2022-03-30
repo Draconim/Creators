@@ -7,7 +7,10 @@ use App\Models\Event_User_Status;
 use App\Models\User;
 use App\Models\Role;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+
 
 class EventController extends Controller
 {
@@ -40,7 +43,12 @@ class EventController extends Controller
      */
     public function create()
     {
+        if($this->checkUserRole() == 'foadmin'){
+            return redirect()->route('userlist');
+        }
+        else{
         return view('events.create');
+        }
     }
 
     
@@ -80,13 +88,23 @@ class EventController extends Controller
     //}
     public function events()
     {
-        $events = Event::orderBy('date', 'desc')->paginate(6);
-        return view('events.events',[
-            'events' => $events
-        ]);
+        if($this->checkUserRole() == 'foadmin'){
+            return redirect()->route('userlist');
+        }
+        else{
+            $events = Event::orderBy('date', 'desc')->paginate(6);
+            return view('events.events',[
+                'events' => $events
+            ]);
+        }
+        
     }
     public function details($id)
     {
+        if($this->checkUserRole() == 'foadmin'){
+            return redirect()->route('userlist');
+        }
+        else{
         $event = Event::find($id);
         $userId=auth()->user()->id;
         $checkIn = Event_User_Status::where('event_id', '=',$id)->where('user_id', '=', $userId)->get();
@@ -104,14 +122,19 @@ class EventController extends Controller
                 'type'=> 0
             ]);
         }
-
+    }
         //    dd($checkIn);
         
         //return view('events.details')->with('data', $data);
     }
     public function getDetails($id){
+        if($this->checkUserRole() == 'foadmin'){
+            return redirect()->route('userlist');
+        }
+        else{
         $event = Event::find($id);
         return view('events.Edit')->with('event',$event);
+        }
     }
     /**
      * Show the form for editing the specified resource.

@@ -13,12 +13,18 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
-        $users = User::orderBy('name', 'desc')->paginate(6);
+        $users = User::orderBy('name', 'desc')->whereNot('role_id', 3)->paginate(6);
 
         foreach ($users as $value) {
-            $value->role_id = $this->checkUserRole($value->role_id);
+            if($this->checkUserRole($value->role_id) != 'foadmin'){
+                $value->role_id = $this->checkUserRole($value->role_id);
+            }
         }
         return view('Users',[
             'users' => $users
