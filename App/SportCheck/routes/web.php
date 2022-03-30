@@ -6,6 +6,8 @@ use App\Http\Controllers\Event_User_StatusController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ExcelController;
+use Illuminate\Support\Facades\Auth;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +20,17 @@ use App\Http\Controllers\ExcelController;
 |
 */
 
-Route::get('/', function () {
-    return view('auth.login');
-});
+if(Auth::check()){
+    Route::get('/', function () {
+        return view('auth.login');
+    });
+}
+else{
+    Route::get('/', function () {
+        return redirect('/events');
+    });
+}
+
 //Route::resource('events','App\Http\Controllers\EventController');
 
 Auth::routes();
@@ -48,4 +58,3 @@ Route::post('/events/{id}/update', [EventController::class, 'update']);
 //Route::get('/events', [EventController::class, 'index'])->name('eventlist');
 //Route::get('/events/{id}', [EventController::class, 'show'])->name('details_event');
 Route::get('exportExcel',[ExcelController::class, 'exportExcel'])->name('export');
-
