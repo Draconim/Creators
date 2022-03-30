@@ -8,7 +8,6 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ExcelController;
 use Illuminate\Support\Facades\Auth;
 
-use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,6 +58,3 @@ Route::post('/events/{id}/update', [EventController::class, 'update']);
 //Route::get('/events', [EventController::class, 'index'])->name('eventlist');
 //Route::get('/events/{id}', [EventController::class, 'show'])->name('details_event');
 Route::get('exportExcel',[ExcelController::class, 'exportExcel'])->name('export');
-Route::get('/users', [UserController::class, 'index'])->name('userlist');
-Route::get('/users/search', [UserController::class, 'search'])->name('usersearch');
-Route::get('/users/{id}/toadmin', [USerController::class, 'update'])->name('user_toadmin');

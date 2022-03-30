@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('events.layout')
 @section('content')
     <div class="container">
         <div class="row">
@@ -6,17 +6,13 @@
             <div class="col-md-9">
                 <div class="card">
                     <div class="card-header">Contacts</div>
-                    <a href="{{ url('/users') }}" title="X"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> X</button></a>                                            
-                    <form method="GET" action="{{url('/users/search')}}">
-
-                        <input type="search" name="userSearch" placeholder="Keresés">
-                        <button type="submit">Keresés</button>
-                    </form>
                     @if(isset($message))
                     <div class="card-header">{{ $message }}</div>
                     @endif
                     <div class="card-body">
+                        <a href="{{ url('/events/create') }}" class="btn btn-success btn-sm" title="Add New Contact">
                             <i class="fa fa-plus" aria-hidden="true"></i> Add New
+                        </a>
                         <br/>
                         <br/>
                         <div class="table-responsive">
@@ -25,18 +21,26 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Name</th>
-                                        <th>Role</th>
+                                        {{-- <th>Description</th> --}}
+                                        <th>Date</th>
+                                        {{-- <th>Duration</th>
+                                        <th>Check-in time</th> --}}
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($users as $item)
+                                @foreach($events as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->name }}</td>
-                                        <td>{{ $item->role }}</td>
+                                        {{-- <td>{{ $item->description }}</td> --}}
+                                        <td>{{ $item->date }}</td>
+                                        {{-- <td>{{ $item->duration }}</td>
+                                        <td>{{ $item->check_in_time }}</td> --}}
+ 
                                         <td>
-                                            <a href="{{ url('/users/' . $item->id . '/toadmin') }}" title="Edit Student"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Admin jog adása/elvétele</button></a>                                            
+                                            <a href="{{ url('/events/' . $item->id) }}" title="View Student"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
+                                            
                                         </td>
                                     </tr>
                                 @endforeach
