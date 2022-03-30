@@ -36,7 +36,7 @@
                     <label for="checkin"><h4>Megjelenés</h4></label>
                     <div name="checkin">{{ $event->check_in_time }}</div>
                 </div>
-               
+                @if(\App\Http\Controllers\EventController::checkUserRole() == "user")
                 @if ($type == '1')
                     <form method="POST" action="{{ route('details',$event) }}">
                         @csrf
@@ -52,6 +52,7 @@
                                 Jelentkezés az eseményre
                             </button>
                     </form>
+                @endif
                 @endif
                 
             </div>

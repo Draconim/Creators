@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use App\Models\Event_User_Status;
 use App\Models\User;
+use App\Models\Role;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
@@ -159,6 +161,12 @@ class EventController extends Controller
 
         
         return redirect()->route('eventlist');
+    }
+
+    public static function checkUserRole(){
+        $role = Role::find(Auth::user()->role_id);
+        return $role->name;
+
     }
 }
 

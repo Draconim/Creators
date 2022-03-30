@@ -2,9 +2,13 @@
 
 @section('content')
 <div class="d-flex flex-column text-center">
+    @if(\App\Http\Controllers\EventController::checkUserRole() == "admin")
     <a href="{{route('create_event')}}" class="d-flex align-self-center btn btn-primary btn-m col-sm-1 m-4"> Új rendezvény hozzáadása</a>
+    @endif
     @foreach($events as $item)
         <div class="d-flex flex-column">
+        @if(\App\Http\Controllers\EventController::checkUserRole() == "admin")
+
             <div class="d-flex flex-row justify-content-center">
                 <div class="d-flex">
                     <div class="d-flex mx-2">
@@ -18,6 +22,7 @@
                 </div>
             </div>
             
+        @endif
             
             <div class="d-flex justify-content-center">
                 <div class="card d-flex mb-3 col-sm-10 align-self-center">

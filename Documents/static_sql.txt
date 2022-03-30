@@ -1,9 +1,7 @@
-Roles
 INSERT INTO roles (name) VALUES ('user');
 INSERT INTO roles (name) VALUES ('admin');
 INSERT INTO roles (name) VALUES ('foadmin');
 
-Statuses
 INSERT INTO statuses (name) VALUES ('bejelentkezett');
 INSERT INTO statuses (name) VALUES ('megjelent');
 INSERT INTO statuses (name) VALUES ('nem_jelent_meg');
