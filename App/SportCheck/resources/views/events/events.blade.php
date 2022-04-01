@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+
+
+
 <div class="d-flex flex-column text-center">
 
     @if(\App\Http\Controllers\EventController::checkUserRole() == "admin")

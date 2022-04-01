@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class UserController extends Controller
 {
@@ -13,16 +15,28 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
-        $users = User::orderBy('name', 'desc')->paginate(6);
-
-        foreach ($users as $value) {
-            $value->role_id = $this->checkUserRole($value->role_id);
+        if($this->checkUserRole() != 'foadmin'){
+            return redirect()->route('events');
         }
-        return view('Users',[
-            'users' => $users
-        ]);
+        else{
+            $users = User::orderBy('name', 'desc')->whereNot('role_id', 3)->paginate(6);
+
+            foreach ($users as $value) {
+                if($this->getUserRoleName($value->role_id) != 'foadmin'){
+                    $value->role_id = $this->getUserRoleName($value->role_id);
+                }
+            }
+            return view('Users',[
+                'users' => $users
+            ]);
+        }
+        
     }
 
     /**
@@ -77,6 +91,10 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if($this->checkUserRole() != 'foadmin'){
+            return redirect()->route('events');
+        }
+        else{
         $user = User::find($id);
         
         if($user->role_id == '1'){
@@ -89,6 +107,7 @@ class UserController extends Controller
         $user->save();
 
         return redirect()->route('userlist')->with('flash_message', 'Contact Updated!');
+    }
     }
 
     /**
@@ -103,16 +122,26 @@ class UserController extends Controller
     }
 
     public function search(){
+        if($this->checkUserRole() != 'foadmin'){
+            return redirect()->route('events');
+        }
+        else{
         $search_text = $_GET['userSearch'];
         $items = User::where('name','LIKE','%'.$search_text.'%')->get();
         foreach ($items as $value) {
-            $value->role_id = $this->checkUserRole($value->role_id);
+            $value->role_id = $this->getUserRoleName($value->role_id);
         }
         return view('Users',[
             'users' => $items
         ]);
     }
-    public static function checkUserRole($id){
+    }
+    public static function checkUserRole(){
+        $role = Role::find(Auth::user()->role_id);
+        return $role->name;
+
+    }
+    public static function getUserRoleName($id){
         $role = Role::find($id);
         return $role->name;
 
