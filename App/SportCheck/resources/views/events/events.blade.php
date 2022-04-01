@@ -6,6 +6,7 @@
     @if(\App\Http\Controllers\EventController::checkUserRole() == "admin")
     <a href="{{route('create_event')}}" class="d-flex align-self-center btn btn-primary btn-m col-sm-1 m-4"> Új rendezvény hozzáadása</a>
     @endif
+    {{dd(\App\Http\Controllers\EventController::checkUserRole())}}
     @foreach($events as $item)
         <div class="d-flex flex-column">
         @if(\App\Http\Controllers\EventController::checkUserRole() == "admin")
