@@ -1,52 +1,41 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container">
-        <div class="row">
- 
-            <div class="col-md-9">
-                <div class="card">
-                    <div class="card-header">Contacts</div>
-                    <a href="{{ url('/users') }}" title="X"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> X</button></a>                                            
-                    <form method="GET" action="{{url('/users/search')}}">
 
-                        <input type="search" name="userSearch" placeholder="Keresés">
-                        <button type="submit">Keresés</button>
+<div class="container">
+    <div class="card">
+        <div class="card-header text-center">Felhasználók</div>
+        <div class="card-body">
+            <div class="d-flex flex-column">
+                <div class="d-flex justify-content-center row">
+                    <form method="GET" action="{{url('/users/search')}}" class="d-flex flex-row align-items-baseline justify-content-center">
+                        <input type="search" name="userSearch" placeholder="Keresés" class="form-control w-25">
+                        <button type="submit" class="btn btn-secondary ms-2 form-text">Keresés</button>
                     </form>
                     @if(isset($message))
                     <div class="card-header">{{ $message }}</div>
                     @endif
-                    <div class="card-body">
-                            <i class="fa fa-plus" aria-hidden="true"></i> Add New
-                        <br/>
-                        <br/>
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Name</th>
-                                        <th>Role</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($users as $item)
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->name }}</td>
-                                        <td>{{ $item->role_id }}</td>
-                                        <td>
-                                            <a href="{{ url('/users/' . $item->id . '/toadmin') }}" title="Edit Student"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Admin jog adása/elvétele</button></a>                                            
-                                        </td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
-                        </div>
- 
+                </div>
+                <div class="d-flex flex-column mx-3 pt-5">
+                    <div class="d-flex flex-row row border-bottom border-2 border-dark">
+                        <div class="d-flex col align-items-baseline justify-content-start">#</div>
+                        <div class="d-flex col align-items-baseline justify-content-start">Név</div>
+                        <div class="d-flex col align-items-baseline justify-content-start">Szerepkör</div>
+                        <div class="d-flex col align-items-baseline justify-content-start">Kontrol</div>
                     </div>
+                    @foreach($users->reverse() as $item)
+                        <div class="d-flex flex-row align-items-baseline row py-2 border-bottom border-1 border-secondary">
+                            <div class="d-flex col align-items-baseline justify-content-start">{{ $item->id }}</div>
+                            <div class="d-flex col align-items-baseline justify-content-start">{{ $item->name }}</div>
+                            <div class="d-flex col align-items-baseline justify-content-start">{{ $item->role_id }}</div>
+                            <div class="d-flex col align-items-baseline justify-content-start">
+                                <a href="{{ url('/users/' . $item->id . '/toadmin') }}" title="Edit Student"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Admin jog adása/elvétele</button></a>                                            
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>
     </div>
+</div>
+
 @endsection

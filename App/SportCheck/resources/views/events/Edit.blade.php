@@ -3,7 +3,17 @@
  
 <div class="container">
   <div class="card">
-    <div class="card-header text-center">Rendezvény módosítása</div>
+    <div class="card-header d-flex align-items-center justify-content-between">
+      <div class="d-flex">
+          <a href="{{ url('/events' ) }}" title="vissza" >
+              <button class="btn btn-primary btn-sm">&larr;</button>
+          </a>
+      </div>
+      <div class="d-flex h3 mb-0">
+            Rendezvény módosítása
+      </div>
+      <div class="d-flex btn btn-disabled" aria-hidden="true">   </div>
+  </div>
     <div class="card-body">
 
         <form action="{{ url('events/'.$event->id.'/update') }}" method="post">
