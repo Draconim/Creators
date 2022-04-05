@@ -28,7 +28,11 @@
                             <div class="d-flex col align-items-baseline justify-content-start">{{ $item->name }}</div>
                             <div class="d-flex col align-items-baseline justify-content-start">{{ $item->role_id }}</div>
                             <div class="d-flex col align-items-baseline justify-content-start">
-                                <a href="{{ url('/users/' . $item->id . '/toadmin') }}" title="Edit Student"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Admin jog adása/elvétele</button></a>                                            
+                                @if($item->role_id == "admin")
+                                    <a href="{{ url('/users/' . $item->id . '/toadmin') }}" title="Edit Student"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Admin jog elvétele</button></a>
+                                @else
+                                    <a href="{{ url('/users/' . $item->id . '/toadmin') }}" title="Edit Student"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Admin jog adása</button></a>
+                                @endif                                            
                             </div>
                         </div>
                     @endforeach

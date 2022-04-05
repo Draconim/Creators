@@ -177,13 +177,13 @@ class EventController extends Controller
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        Event::destroy($id);
+        Event::destroy($request->input('id'));
         $events = Event::orderBy('date', 'desc')->paginate(6);
 
         
-        return redirect()->route('eventlist');
+        return redirect()->route('events');
     }
 
     public static function checkUserRole(){

@@ -13,7 +13,7 @@
             Rendezvény módosítása
       </div>
       <div class="d-flex btn btn-disabled" aria-hidden="true">   </div>
-  </div>
+    </div>
     <div class="card-body">
 
         <form action="{{ url('events/'.$event->id.'/update') }}" method="post">

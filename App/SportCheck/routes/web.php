@@ -50,13 +50,16 @@ Route::get('/vendeg',function(){
 });
 
 Route::get('/events', [EventController::class, 'events'])->name('events');
+Route::post('/events',[EventController::class, 'destroy']);
 Route::get('/events/{id}', [EventController::class, 'details'])->name('details');
 Route::post('/events/{id}', [Event_User_StatusController::class, 'store']);
 Route::get('/create', [EventController::class, 'create'])->name('create_event');
 Route::post('/create', [EventController::class, 'store']);
 Route::get('/events/{id}/update', [EventController::class, 'getDetails'])->name('update_event');
 Route::post('/events/{id}/update', [EventController::class, 'update']);
+
 Route::get('exportExcel',[ExcelController::class, 'exportExcel'])->name('export');
+
 Route::get('/users', [UserController::class, 'index'])->name('userlist');
 Route::get('/users/search', [UserController::class, 'search'])->name('usersearch');
 Route::get('/users/{id}/toadmin', [USerController::class, 'update'])->name('user_toadmin');
