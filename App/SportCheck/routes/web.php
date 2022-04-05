@@ -17,6 +17,10 @@ use App\Http\Controllers\EventController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/qr', function () {
+    return view('qr');
+});
 Route::resource('events','App\Http\Controllers\EventController');
 
 Route::get('/events', [EventController::class, 'index'])->name('eventlist');
