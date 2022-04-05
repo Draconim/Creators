@@ -1,1 +1,0 @@
-2022-04-05 09:10:13: imagepng(http://127.0.0.1:8000/imagestest1df79d71d92e5295995c5f63318b56d2.png): Failed to open stream: HTTP wrapper does not support writeable connections2022-04-05 09:10:51: imagepng(http://127.0.0.1:8000/imagestest1df79d71d92e5295995c5f63318b56d2.png): Failed to open stream: HTTP wrapper does not support writeable connections
