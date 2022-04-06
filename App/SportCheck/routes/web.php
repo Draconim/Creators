@@ -9,6 +9,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ExcelController;
 use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Support\Facades\App;
+use Barryvdh\Snappy\Facades\SnappyPdf;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,4 +68,12 @@ Route::get('/users/{id}/toadmin', [USerController::class, 'update'])->name('user
 
 
 
+
+Route::get('/qr', function () {
+
+    $pdf = SnappyPdf::loadView('qr');
+    return $pdf->stream('e.pdf');
+    //return view('qr');
+});
+Route::resource('events','App\Http\Controllers\EventController');
 
