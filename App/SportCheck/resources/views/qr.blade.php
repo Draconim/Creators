@@ -7,8 +7,8 @@
     <title>Document</title>
 </head>
 <body>
-    Hello
-    {{QrCode::generate('Hello world!');}}
-
+    Esemény neve: {{$event->name}}<br>
+    Esemény leírása: {{$event->description}}<br>
+    {{QrCode::generate("http://127.0.0.1:8000/events/checkin/".$event->code);}}
 </body>
 </html>

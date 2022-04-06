@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Event;
 use App\Models\Event_User_Status;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -95,5 +96,16 @@ class Event_User_StatusController extends Controller
     public function destroy(Event_User_Status $event_User_Status)
     {
         //
+    }
+    public function userAppear(?string $code){
+
+
+        $event = Event::where('code', '=', $code)->get();
+
+        $eventId = $event[0]->id;
+        $getRecord = Event_User_Status::where('event_id', '=',$eventId)->where('user_id', '=', Auth::id())->get();
+
+        $getRecord[0]->status_id = 2;
+        $getRecord[0]->save();
     }
 }

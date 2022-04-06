@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Barryvdh\Snappy\Facades\SnappyPdf;
+
 
 
 class EventController extends Controller
@@ -191,5 +193,15 @@ class EventController extends Controller
         return $role->name;
 
     }
+
+    public function setQrCode(Request $request, $id){
+        $event = Event::find($id);
+
+        $event_data = array($event->id, $event->name);
+
+        $pdf = SnappyPdf::loadView('qr', compact('event'));
+        return $pdf->stream('e.pdf');
+    }
+
 }
 

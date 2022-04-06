@@ -66,14 +66,6 @@ Route::get('/users', [UserController::class, 'index'])->name('userlist');
 Route::get('/users/search', [UserController::class, 'search'])->name('usersearch');
 Route::get('/users/{id}/toadmin', [USerController::class, 'update'])->name('user_toadmin');
 
+Route::get('/events/{id}/qr/set', [EventController::class, 'setQrCode'])->name('setQrCode');
 
-
-
-Route::get('/qr', function () {
-
-    $pdf = SnappyPdf::loadView('qr');
-    return $pdf->stream('e.pdf');
-    //return view('qr');
-});
-Route::resource('events','App\Http\Controllers\EventController');
-
+Route::get('/events/checkin/{code}', [Event_User_StatusController::class, 'userAppear'])->name('checkIn');
