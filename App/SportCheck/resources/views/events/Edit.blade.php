@@ -24,20 +24,20 @@
               <input type="text" name="name" id="name" class="form-control mb-4" value="{{$event->name}}">
             </div>
             <div class="col-8">
-              <label for="desc">Leírás</label>
-              <textarea type="text" rows="5" name="desc" id="description" class="form-control mb-4 h-100" rows="5">{{$event->description}}</textarea>
+              <label for="description">Leírás</label>
+              <textarea type="text" rows="5" name="description" id="description" class="form-control mb-4 h-100" rows="5">{{$event->description}}</textarea>
             </div>
             <div class="col-8">
               <label for="date">Időpont</label>
               <input type="text" name="date" id="date" class="form-control mb-4"  value="{{$event->date}}">
             </div>
             <div class="col-8">
-              <label for="dur">Időtartam</label>
-              <input type="text" name="dur" id="duration" class="form-control mb-4" value="{{$event->duration}}">
+              <label for="duration">Időtartam</label>
+              <input type="text" name="duration" id="duration" class="form-control mb-4" value="{{$event->duration}}">
             </div>
             <div class="col-8">
-              <label for="checkin">Bejelentkezés ideje</label>
-              <input type="text" name="checkin" id="check_in_time" class="form-control mb-2" value="{{$event->check_in_time}}">
+              <label for="check_in_time">Bejelentkezés ideje</label>
+              <input type="text" name="check_in_time" id="check_in_time" class="form-control mb-2" value="{{$event->check_in_time}}">
             </div>
             <input type="submit" value="Módosítások mentése" class="btn btn-success btn-lg m-4 col-4">
           </div>

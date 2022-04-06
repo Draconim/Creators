@@ -163,10 +163,10 @@ class EventController extends Controller
 
         $event = Event::find($id);
         $event->name = $request->input('name');
-        $event->description = $request->input('desc');
+        $event->description = $request->input('description');
         $event->date = $request->input('date');
-        $event->duration = $request->input('dur');
-        $event->check_in_time = $request->input('checkin');
+        $event->duration = $request->input('duration');
+        $event->check_in_time = $request->input('check_in_time');
         $event->save();
 
         return redirect()->route('events')->with('flash_message', 'Contact Updated!');
