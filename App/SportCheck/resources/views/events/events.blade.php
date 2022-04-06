@@ -25,6 +25,11 @@
                                             <a href="{{url('/events/'.$item->id.'/update/')}}" class="btn btn-primary align-self-center mb-1">Letöltés</a>   
                                         </div>
                                     </div>
+                                    <div class="d-flex">
+                                        <div class="d-flex mx-2">
+                                            <a href="{{url('/events/'.$item->id.'/qr/set/')}}" class="btn btn-primary align-self-center mb-1">QR kód lekérése</a>   
+                                        </div>
+                                    </div>
                                     <form action="{{url('/events')}}" method="POST">
                                         @csrf
                                         <div class="d-flex">
