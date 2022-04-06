@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
+use Illuminate\Support\Facades\App;
+use Barryvdh\Snappy\Facades\SnappyPdf;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +21,10 @@ Route::get('/', function () {
 });
 
 Route::get('/qr', function () {
-    return view('qr');
+
+    $pdf = SnappyPdf::loadView('qr');
+    return $pdf->stream('e.pdf');
+    //return view('qr');
 });
 Route::resource('events','App\Http\Controllers\EventController');
 
