@@ -105,7 +105,16 @@ class Event_User_StatusController extends Controller
         $eventId = $event[0]->id;
         $getRecord = Event_User_Status::where('event_id', '=',$eventId)->where('user_id', '=', Auth::id())->get();
 
+        if($getRecord[0]->status_id == 2){
+            $status = 'checked';
+        }
+        else{
+            $status = 'success';
+        }
         $getRecord[0]->status_id = 2;
         $getRecord[0]->save();
+
+        
+        return view('checkInLog')->with('status', $status);
     }
 }

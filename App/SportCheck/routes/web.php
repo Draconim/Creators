@@ -56,7 +56,7 @@ Route::post('/events',[EventController::class, 'destroy']);
 Route::get('/events/{id}', [EventController::class, 'details'])->name('details');
 Route::post('/events/{id}', [Event_User_StatusController::class, 'store']);
 Route::get('/create', [EventController::class, 'create'])->name('create_event');
-Route::post('/create', [EventController::class, 'store']);
+Route::post('/create', [EventController::class, 'store'])->name('store_event');
 Route::get('/events/{id}/update', [EventController::class, 'getDetails'])->name('update_event');
 Route::post('/events/{id}/update', [EventController::class, 'update']);
 
