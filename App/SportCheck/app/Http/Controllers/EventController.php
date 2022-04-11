@@ -112,10 +112,31 @@ class EventController extends Controller
         $checkIn = Event_User_Status::where('event_id', '=',$id)->where('user_id', '=', $userId)->get();
         //dd($checkIn);
         if(count($checkIn) ==1 ){
-            return view('events.details',[
-                'event' => $event,
-                'type'=> 1
-            ]);
+            
+            if($checkIn[0]->status_id == 1){
+                return view('events.details',[
+                    'event' => $event,
+                    'type'=> 1
+                ]);
+            }
+            else if($checkIn[0]->status_id == 2){
+                return view('events.details',[
+                    'event' => $event,
+                    'type'=> 2
+                ]);
+            }
+            else if($checkIn[0]->status_id == 3){
+                return view('events.details',[
+                    'event' => $event,
+                    'type'=> 3
+                ]);
+            }
+            else if($checkIn[0]->status_id == 4){
+                return view('events.details',[
+                    'event' => $event,
+                    'type'=> 4
+                ]);
+            }
         }
         else{
             $checkIn = Event_User_Status::where('event_id', '=',$id)->where('user_id', '=', $userId)->delete();

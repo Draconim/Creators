@@ -35,18 +35,30 @@ class Event_User_StatusController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id)
+    public function store($id, $checkedInWithoutApply = false)
     {
-        $create=[
-            'user_id' => Auth::id(),
-            'event_id' => $id,
-            'status_id' => 1,
+        if(!$checkedInWithoutApply){
+
+            $create=[
+                'user_id' => Auth::id(),
+                'event_id' => $id,
+                'status_id' => 1,
         ];
         Event_User_Status::create($create);
-        //return view('events/'.$event->id)->with('events', $event);
         return redirect()
             ->route('details', $id)
             ->with('success', __('Sikeres jelentkezés'));
+        }
+        else{
+            $create=[
+                'user_id' => Auth::id(),
+                'event_id' => $id,
+                'status_id' => 4,
+        ];
+        Event_User_Status::create($create);
+        }
+        //return view('events/'.$event->id)->with('events', $event);
+        
     }
     public function checkedIn($eventId){
         $userId=auth()->user()->id;
@@ -105,15 +117,23 @@ class Event_User_StatusController extends Controller
         $eventId = $event[0]->id;
         $getRecord = Event_User_Status::where('event_id', '=',$eventId)->where('user_id', '=', Auth::id())->get();
 
-        if($getRecord[0]->status_id == 2){
-            $status = 'checked';
+        if(count($getRecord) == 0){
+            $this->store($eventId, true);
+            $status = 'checkedWithoutApply';
+            return view('checkInLog')->with('status', $status);
         }
         else{
-            $status = 'success';
+            if($getRecord[0]->status_id == 2){
+                $status = 'checked';
+            }
+            else{
+                $status = 'success';
+            }
+            $getRecord[0]->status_id = 2;
+            $getRecord[0]->save();
+    
         }
-        $getRecord[0]->status_id = 2;
-        $getRecord[0]->save();
-
+        
         
         return view('checkInLog')->with('status', $status);
     }

@@ -12,6 +12,8 @@
 
     @elseif($status == 'checked')
         Már jelentkezett az eseményre!
+    @elseif($status = 'checkedWithoutApply')
+        Bejelentkezés nélkül jelent meg!
     @endif
 </body>
 </html>
