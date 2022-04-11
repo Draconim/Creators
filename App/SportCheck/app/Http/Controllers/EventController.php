@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Barryvdh\Snappy\Facades\SnappyPdf;
+use Nette\Utils\DateTime;
 
 
 
@@ -107,6 +108,8 @@ class EventController extends Controller
             return redirect()->route('userlist');
         }
         else{
+
+
         $event = Event::find($id);
         $userId=auth()->user()->id;
         $checkIn = Event_User_Status::where('event_id', '=',$id)->where('user_id', '=', $userId)->get();
