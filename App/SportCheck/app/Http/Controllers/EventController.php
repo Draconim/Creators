@@ -112,8 +112,10 @@ class EventController extends Controller
 
         $event = Event::find($id);
         $userId=auth()->user()->id;
+        
         $checkIn = Event_User_Status::where('event_id', '=',$id)->where('user_id', '=', $userId)->get();
         //dd($checkIn);
+        
         if(count($checkIn) ==1 ){
             
             if($checkIn[0]->status_id == 1){

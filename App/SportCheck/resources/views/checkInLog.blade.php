@@ -9,10 +9,13 @@
 <body>
     @if($status == 'success')
         Sikeresen bejelentkezett az eseményre!
-
+    @elseif($status == 'isAdmin')
+        Csak felhasználó jelentkezhet eseményekre!
     @elseif($status == 'checked')
         Már jelentkezett az eseményre!
-    @elseif($status = 'checkedWithoutApply')
+    @elseif($status == 'outdated')
+        Az esemény már elmúlt!
+    @elseif($status == 'checkedWithoutApply')
         Bejelentkezés nélkül jelent meg!
     @endif
 </body>

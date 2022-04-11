@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\Role;
 use App\Models\Event_User_Status;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -112,29 +113,44 @@ class Event_User_StatusController extends Controller
     public function userAppear(?string $code){
 
 
+        
         $event = Event::where('code', '=', $code)->get();
 
         $eventId = $event[0]->id;
         $getRecord = Event_User_Status::where('event_id', '=',$eventId)->where('user_id', '=', Auth::id())->get();
 
-        if(count($getRecord) == 0){
-            $this->store($eventId, true);
-            $status = 'checkedWithoutApply';
-            return view('checkInLog')->with('status', $status);
+        if($this->checkUserRole() != 'user'){
+            $status = 'isAdmin';
         }
         else{
-            if($getRecord[0]->status_id == 2){
-                $status = 'checked';
+            if(count($getRecord) == 0){
+                $this->store($eventId, true);
+                $status = 'checkedWithoutApply';
+                return view('checkInLog')->with('status', $status);
+            }
+            else if($getRecord[0]->status_id == 3){
+                $status = 'outdated';
             }
             else{
-                $status = 'success';
+                if($getRecord[0]->status_id == 2 && $getRecord[0]->status_id == 4){
+                    $status = 'checked';
+                }
+                else{
+                    $status = 'success';
+                }
+                $getRecord[0]->status_id = 2;
+                $getRecord[0]->save();
+        
             }
-            $getRecord[0]->status_id = 2;
-            $getRecord[0]->save();
-    
         }
+        
         
         
         return view('checkInLog')->with('status', $status);
+    }
+    public static function checkUserRole(){
+        $role = Role::find(Auth::user()->role_id);
+        return $role->name;
+
     }
 }
