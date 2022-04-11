@@ -7,6 +7,7 @@ use App\Models\Role;
 use App\Models\Event_User_Status;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Nette\Utils\DateTime;
 
 class Event_User_StatusController extends Controller
 {
@@ -124,9 +125,16 @@ class Event_User_StatusController extends Controller
         }
         else{
             if(count($getRecord) == 0){
-                $this->store($eventId, true);
-                $status = 'checkedWithoutApply';
-                return view('checkInLog')->with('status', $status);
+
+                if($event[0]->check_in_time < new DateTime('now')){
+                    $status = 'outdated';
+                }
+                else{
+                    $this->store($eventId, true);
+                    $status = 'checkedWithoutApply';
+                //return view('checkInLog')->with('status', $status);
+                }
+                
             }
             else if($getRecord[0]->status_id == 3){
                 $status = 'outdated';
