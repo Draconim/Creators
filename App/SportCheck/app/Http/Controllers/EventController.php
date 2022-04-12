@@ -117,6 +117,15 @@ class EventController extends Controller
         $event = Event::find($id);
         $userId=auth()->user()->id;
         
+        if($this->checkUserRole() == 'user'){
+            if($event->check_in_time < new DateTime('now')){
+                return redirect('events');
+            }
+        }
+        else{
+            $events = Event::orderBy('date', 'desc')->get();
+        }
+
         $checkIn = Event_User_Status::where('event_id', '=',$id)->where('user_id', '=', $userId)->get();
         //dd($checkIn);
         
