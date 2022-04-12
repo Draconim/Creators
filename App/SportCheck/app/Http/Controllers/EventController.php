@@ -14,7 +14,6 @@ use Barryvdh\Snappy\Facades\SnappyPdf;
 use Nette\Utils\DateTime;
 
 
-
 class EventController extends Controller
 {
     /**
@@ -234,20 +233,38 @@ class EventController extends Controller
         return $pdf->stream('e.pdf');
     }
 
-    public function search(){
+    public function search(Request $request){
         if($this->checkUserRole() == 'foadmin'){
             return redirect()->route('users');
         }
         else{
         $search_text = $_GET['eventSearch'];
-        
-
-
+        $fields = $request->get('searchItem', 0);
         if($this->checkUserRole() == 'user'){
-            $events = Event::where('name','LIKE','%'.$search_text.'%')->where('check_in_time', '>', new DateTime('now'))->orderBy('date', 'desc')->get();
+            
+            if($fields == 'srcName'){
+                $events = Event::where('name','LIKE','%'.$search_text.'%')->where('check_in_time', '>', new DateTime('now'))->orderBy('date', 'desc')->get();
+            }
+            else if ($fields == 'srcDesc'){
+                $events = Event::where('description','LIKE','%'.$search_text.'%')->where('check_in_time', '>', new DateTime('now'))->orderBy('date', 'desc')->get();
+            } 
+            else{
+                $this->events();
+            }
+            
         }
         else{
-            $events = Event::where('name','LIKE','%'.$search_text.'%')->orderBy('date', 'desc')->get();
+            if($fields == 'srcName'){
+                $events = Event::where('name','LIKE','%'.$search_text.'%')->orderBy('date', 'desc')->get();
+            }
+            else if ($fields == 'srcDesc'){
+                $events = Event::where('description','LIKE','%'.$search_text.'%')->orderBy('date', 'desc')->get();
+
+            } 
+            else{
+                $this->events();
+            }
+            
         }
 
         return view('events.events',[

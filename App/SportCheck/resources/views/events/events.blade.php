@@ -3,10 +3,14 @@
 
 <div class="d-flex flex-column text-center">
     <form method="GET" action="{{route('eventsearch')}}" class="d-flex flex-row align-items-baseline justify-content-center">
+        Keresés a címben: &nbsp;<input type="radio" name="searchItem" value="srcName" checked>&nbsp;&nbsp;&nbsp;
+        Keresés a leírásban: &nbsp;<input type="radio" name="searchItem" value="srcDesc"> <br>
         <input type="search" name="eventSearch" placeholder="Keresés" class="form-control w-25">
         <button type="submit" class="btn btn-secondary ms-2 form-text">Keresés</button>
     </form>
-    Ide jöhetnek rádiógombok
+    <div class="d-flex flex-row align-items-baseline justify-content-center">
+        </div>
+    
     @if(\App\Http\Controllers\EventController::checkUserRole() == "admin")
     <a href="{{route('create_event')}}" class="d-flex align-self-center justify-content-center btn btn-primary btn-m col-sm-2 m-4 text-nowrap"> Új rendezvény hozzáadása</a>
     @endif
