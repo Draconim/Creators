@@ -53,6 +53,7 @@ Route::get('/vendeg',function(){
 
 Route::get('/events', [EventController::class, 'events'])->name('events');
 Route::post('/events',[EventController::class, 'destroy']);
+Route::get('/events/search', [EventController::class, 'search'])->name('eventsearch');
 Route::get('/events/{id}', [EventController::class, 'details'])->name('details');
 Route::post('/events/{id}', [Event_User_StatusController::class, 'store']);
 Route::get('/create', [EventController::class, 'create'])->name('create_event');

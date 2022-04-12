@@ -234,5 +234,18 @@ class EventController extends Controller
         return $pdf->stream('e.pdf');
     }
 
+    public function search(){
+        if($this->checkUserRole() == 'foadmin'){
+            return redirect()->route('users');
+        }
+        else{
+        $search_text = $_GET['eventSearch'];
+        $events = Event::where('name','LIKE','%'.$search_text.'%')->get();
+        return view('events.events',[
+            'events' => $events
+        ]);
+    }
+    }
+
 }
 
