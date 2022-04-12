@@ -45,13 +45,19 @@
                             </button>
                     </form>
 
-                @else
+                @elseif($type == '0')
                     <form method="POST" action="{{ route('details',$event) }}">
                         @csrf
                             <button class="btn btn-primary btn-m" type="submit">
                                 Jelentkezés az eseményre
                             </button>
                     </form>
+                @elseif($type == '2')
+                    <h1>Már megjelent ezen az eseményen!</h1>
+                @elseif($type == '3')
+                    <h1>Az eseményre jelentkezett, de végül nem jelent meg!</h1>
+                @elseif($type == '4')
+                    <h1>Az eseményen bejelentkezés nélkül jelent meg!</h1>
                 @endif
                 @endif
                 

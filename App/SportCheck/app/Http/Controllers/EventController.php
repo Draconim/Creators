@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Barryvdh\Snappy\Facades\SnappyPdf;
+use Nette\Utils\DateTime;
 
 
 
@@ -94,7 +95,12 @@ class EventController extends Controller
             return redirect()->route('userlist');
         }
         else{
-            $events = Event::orderBy('date', 'desc')->paginate(6);
+            if($this->checkUserRole() == 'user'){
+                $events = Event::where('check_in_time', '>', new DateTime('now'))->orderBy('date', 'desc')->get();
+            }
+            else{
+                $events = Event::orderBy('date', 'desc')->get();
+            }
             return view('events.events',[
                 'events' => $events
             ]);
@@ -107,15 +113,40 @@ class EventController extends Controller
             return redirect()->route('userlist');
         }
         else{
+
+
         $event = Event::find($id);
         $userId=auth()->user()->id;
+        
         $checkIn = Event_User_Status::where('event_id', '=',$id)->where('user_id', '=', $userId)->get();
         //dd($checkIn);
+        
         if(count($checkIn) ==1 ){
-            return view('events.details',[
-                'event' => $event,
-                'type'=> 1
-            ]);
+            
+            if($checkIn[0]->status_id == 1){
+                return view('events.details',[
+                    'event' => $event,
+                    'type'=> 1
+                ]);
+            }
+            else if($checkIn[0]->status_id == 2){
+                return view('events.details',[
+                    'event' => $event,
+                    'type'=> 2
+                ]);
+            }
+            else if($checkIn[0]->status_id == 3){
+                return view('events.details',[
+                    'event' => $event,
+                    'type'=> 3
+                ]);
+            }
+            else if($checkIn[0]->status_id == 4){
+                return view('events.details',[
+                    'event' => $event,
+                    'type'=> 4
+                ]);
+            }
         }
         else{
             $checkIn = Event_User_Status::where('event_id', '=',$id)->where('user_id', '=', $userId)->delete();

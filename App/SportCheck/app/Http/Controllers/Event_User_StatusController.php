@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\Role;
 use App\Models\Event_User_Status;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Nette\Utils\DateTime;
 
 class Event_User_StatusController extends Controller
 {
@@ -35,18 +37,30 @@ class Event_User_StatusController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id)
+    public function store($id, $checkedInWithoutApply = false)
     {
-        $create=[
-            'user_id' => Auth::id(),
-            'event_id' => $id,
-            'status_id' => 1,
+        if(!$checkedInWithoutApply){
+
+            $create=[
+                'user_id' => Auth::id(),
+                'event_id' => $id,
+                'status_id' => 1,
         ];
         Event_User_Status::create($create);
-        //return view('events/'.$event->id)->with('events', $event);
         return redirect()
             ->route('details', $id)
             ->with('success', __('Sikeres jelentkezés'));
+        }
+        else{
+            $create=[
+                'user_id' => Auth::id(),
+                'event_id' => $id,
+                'status_id' => 4,
+        ];
+        Event_User_Status::create($create);
+        }
+        //return view('events/'.$event->id)->with('events', $event);
+        
     }
     public function checkedIn($eventId){
         $userId=auth()->user()->id;
@@ -100,21 +114,51 @@ class Event_User_StatusController extends Controller
     public function userAppear(?string $code){
 
 
+        
         $event = Event::where('code', '=', $code)->get();
 
         $eventId = $event[0]->id;
         $getRecord = Event_User_Status::where('event_id', '=',$eventId)->where('user_id', '=', Auth::id())->get();
 
-        if($getRecord[0]->status_id == 2){
-            $status = 'checked';
+        if($this->checkUserRole() != 'user'){
+            $status = 'isAdmin';
         }
         else{
-            $status = 'success';
-        }
-        $getRecord[0]->status_id = 2;
-        $getRecord[0]->save();
+            if(count($getRecord) == 0){
 
+                if($event[0]->check_in_time < new DateTime('now')){
+                    $status = 'outdated';
+                }
+                else{
+                    $this->store($eventId, true);
+                    $status = 'checkedWithoutApply';
+                //return view('checkInLog')->with('status', $status);
+                }
+                
+            }
+            else if($getRecord[0]->status_id == 3){
+                $status = 'outdated';
+            }
+            else{
+                if($getRecord[0]->status_id == 2 && $getRecord[0]->status_id == 4){
+                    $status = 'checked';
+                }
+                else{
+                    $status = 'success';
+                }
+                $getRecord[0]->status_id = 2;
+                $getRecord[0]->save();
+        
+            }
+        }
+        
+        
         
         return view('checkInLog')->with('status', $status);
+    }
+    public static function checkUserRole(){
+        $role = Role::find(Auth::user()->role_id);
+        return $role->name;
+
     }
 }
