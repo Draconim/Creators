@@ -240,7 +240,16 @@ class EventController extends Controller
         }
         else{
         $search_text = $_GET['eventSearch'];
-        $events = Event::where('name','LIKE','%'.$search_text.'%')->get();
+        
+
+
+        if($this->checkUserRole() == 'user'){
+            $events = Event::where('name','LIKE','%'.$search_text.'%')->where('check_in_time', '>', new DateTime('now'))->orderBy('date', 'desc')->get();
+        }
+        else{
+            $events = Event::where('name','LIKE','%'.$search_text.'%')->orderBy('date', 'desc')->get();
+        }
+
         return view('events.events',[
             'events' => $events
         ]);
