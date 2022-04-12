@@ -95,7 +95,12 @@ class EventController extends Controller
             return redirect()->route('userlist');
         }
         else{
-            $events = Event::orderBy('date', 'desc')->paginate(6);
+            if($this->checkUserRole() == 'user'){
+                $events = Event::where('check_in_time', '>', new DateTime('now'))->orderBy('date', 'desc')->get();
+            }
+            else{
+                $events = Event::orderBy('date', 'desc')->get();
+            }
             return view('events.events',[
                 'events' => $events
             ]);
