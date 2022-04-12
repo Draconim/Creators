@@ -33,7 +33,7 @@
                     </div>
                 </div>
                 <div class="p-4">
-                    <label for="checkin"><h4>Megjelenés</h4></label>
+                    <label for="checkin"><h4>Megjelenés határideje</h4></label>
                     <div name="checkin">{{ $event->check_in_time }}</div>
                 </div>
                 @if(\App\Http\Controllers\EventController::checkUserRole() == "user")
