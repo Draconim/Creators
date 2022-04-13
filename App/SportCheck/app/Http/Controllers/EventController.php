@@ -234,6 +234,11 @@ class EventController extends Controller
     }
 
     public function setQrCode(Request $request, $id){
+
+        if($this->checkUserRole() == 'foadmin'){
+            return redirect()->route('userlist');
+        }
+        
         $event = Event::find($id);
 
         $event_data = array($event->id, $event->name);

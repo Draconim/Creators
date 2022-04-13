@@ -164,6 +164,8 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Barryvdh\Snappy\ServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+
 
 
         /*
@@ -193,7 +195,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        // ...
-    ])->toArray(),
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        ])->toArray(),
 
 ];

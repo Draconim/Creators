@@ -1,6 +1,13 @@
 @extends('layouts.app')
 @section('content')
 
+<script>
+    function exportTasks(_this) {
+       let _url = $(_this).data('href');
+       window.location.href = _url;
+    }
+ </script>
+
 <div class="d-flex flex-column text-center">
     <form method="GET" action="{{route('eventsearch')}}" class="d-flex flex-row align-items-baseline justify-content-center">
         Keresés a címben: &nbsp;<input type="radio" name="searchItem" value="srcName" checked>&nbsp;&nbsp;&nbsp;
@@ -31,7 +38,7 @@
                                     </div>
                                     <div class="d-flex">
                                         <div class="d-flex mx-2">
-                                            <a href="{{url('/events/'.$item->id.'/update/')}}" class="btn btn-primary align-self-center mb-1">Letöltés</a>   
+                                            <a href="{{url('/events/'.$item->id.'/export/')}}" class="btn btn-primary align-self-center mb-1">Letöltés</a>   
                                         </div>
                                     </div>
                                     <div class="d-flex">
