@@ -113,7 +113,9 @@ class Event_User_StatusController extends Controller
     }
     public function userAppear(?string $code){
 
-
+        if(!Auth::check()){
+            return view('Auth.login');
+        }
         
         $event = Event::where('code', '=', $code)->get();
 
@@ -155,6 +157,7 @@ class Event_User_StatusController extends Controller
         
         
         return view('checkInLog')->with('status', $status);
+        
     }
     public static function checkUserRole(){
         $role = Role::find(Auth::user()->role_id);
