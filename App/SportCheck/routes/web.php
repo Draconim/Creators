@@ -70,3 +70,6 @@ Route::get('/users/{id}/toadmin', [USerController::class, 'update'])->name('user
 Route::get('/events/{id}/qr/set', [EventController::class, 'setQrCode'])->name('setQrCode');
 
 Route::get('/events/checkin/{code}', [Event_User_StatusController::class, 'userAppear'])->name('checkIn');
+Route::get('/asd',function(){
+    return view('checkInLog')->with('status','checkedWithoutApply');
+});
