@@ -16,10 +16,10 @@ class EventsSeeder extends Seeder
      */
     public function run()
     {
-        $d1 = Carbon::create(2022,5,15,13,0,0);
-        $d12 = Carbon::create(2022,5,15,12,30,0);
-        $d2 = Carbon::create(2022,5,17,14,0,0);
-        $d22 = Carbon::create(2022,5,17,13,40,0);
+        $d1 = Carbon::create(2022,10,15,13,0,0);
+        $d12 = Carbon::create(2022,10,15,12,30,0);
+        $d2 = Carbon::create(2022,10,17,14,0,0);
+        $d22 = Carbon::create(2022,10,17,13,40,0);
         $d3 = Carbon::create(2022,5,22,16,0,0);
         $d32 = Carbon::create(2022,5,22,15,30,0);
         Event::create([
