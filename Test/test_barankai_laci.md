@@ -22,7 +22,9 @@ ID |Teszt helye| Tesztelt funkció | Várt eredmény | Eredmény
 18|Főadmin oldal|Admin jog adása|Az "admin jog adása" gombra kattintva a megfelelő felhasználó jogosultsági köre megváltozik az adatbázisban.|Megfelelt.
 19|Főadmin oldal|Admin jog visszavonása|Az "admin jog elvétele" gombra kattintva a felhasználótól megvonásra kerül az admin jogosultság, mentésre kerül az adatbázisban.|Megfelelt.
 20|Navigációs menü|Kijelentkezés|A "kijelentkezés" gomb megnyomására a felhasználó kijelentkeztetésre kerül.|Megfelelt.
-21||||
-22||||
-23||||
-24||||
+21|Rendezvények oldal->Rendezvény információ - Admin|Átirányítás|Az átirányítás rendben megtörténik, az admin nem jelentkezhet a rendezvényre, nem látja a gombot.|Megfelelt.
+22|Rendezvények oldal - Főadmin|Elérhetőség|A főadmin nem tudja megnyitni a rendezvények oldalt.|Megfelelt.
+23|Rendezvény oldal - Főadmin|Elérhetőség|A főadmin nem tudja megnyitni egy adott rendezvény információs oldalát.|Megfelelt.
+24|Új rendezvény hozzáadása oldal - Főadmin|Elérhetőség|A főadmin nem tudja megnyitni az új rendezvény hozzáadása oldalt.|Megfelelt.
+25|Főadmin oldal|Elérhetőség|Az admin nem tudja megnyitni a főadmin oldalát.|Megfelelt.
+26|Főadmin oldal|Elérhetőség|A sima felhasználó nem tudja megnyitni a főadmin oldalát.|Megfelelt.
